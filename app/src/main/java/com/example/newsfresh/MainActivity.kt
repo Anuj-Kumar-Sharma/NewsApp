@@ -27,12 +27,12 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
     }
 
     private fun fetchData() {
-        val url = "https://newsapi.org/v2/top-headlines?country=in&category=science&piKey=1f4a12d2698e432ea9cf18126dcc7acd"
-        val jsonObjectRequest = JsonObjectRequest(
+        val url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=d6714d64c89849119e5e774b9395b71c"
+        val jsonObjectRequest = object:JsonObjectRequest(
             Request.Method.GET,
             url,
             null,
-            Response.Listener {
+            {
                 val newsJsonArray = it.getJSONArray("articles")
                 val newsArray = ArrayList<News>()
                 for(i in 0 until newsJsonArray.length()) {
@@ -48,16 +48,36 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
 
                 mAdapter.updateNews(newsArray)
             },
-            Response.ErrorListener {
-
+            {
+                 Toast.makeText(this,"hiii",Toast.LENGTH_LONG).show()
             }
-        )
+        ){
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["User-Agent"] = "Mozilla/5.0"
+                return headers
+         }   }
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
+
+    override var jsonObjectRequest: Any
+        get() = TODO("Not yet implemented")
+        set(value) {}
 
     override fun onItemClicked(item: News) {
         val builder =  CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(item.url))
+    }
+
+    override fun JsonObjectRequest(
+        get: Int,
+        url: String,
+        nothing: Nothing?,
+        function: () -> Unit,
+        function1: () -> Unit,
+        function2: () -> Unit
+    ): Any {
+        TODO("Not yet implemented")
     }
 }
