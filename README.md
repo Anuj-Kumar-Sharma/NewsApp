@@ -3,4 +3,6 @@ Fetch news from API and list them inside a RecyclerView.
 
 </br>
 </br>
-[![Watch this video](https://img.youtube.com/vi/ttIfesjYDQQ/0.jpg)] (https://www.youtube.com/watch?v=ttIfesjYDQQ)
+
+<a href="https://www.youtube.com/watch?v=ttIfesjYDQQ" target="_blank"><img src="https://img.youtube.com/vi/ttIfesjYDQQ/0.jpg" 
+alt="Watch this video"/></a>
